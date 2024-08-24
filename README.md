@@ -2,65 +2,58 @@
 
 ## Overview
 
-This Python script converts a WAV audio file into a video that displays a spectrogram of the audio. It uses `numpy`, `matplotlib`, and `wave` to process the audio data and generate a spectrogram. The resulting video is created using `FFmpeg` for better integration and output.
+This Python project includes a set of scripts to convert audio files into videos that display a spectrogram of the audio. The process involves trimming and converting audio files if needed and generating a video with a spectrogram using `numpy`, `matplotlib`, and `wave`. The resulting video is created using `FFmpeg` for better integration and output.
 
 ## Features
 
 - **Spectrogram Visualization**: Generates a visual representation of the audio's frequency spectrum over time.
 - **Video Creation**: Converts the spectrogram into an MP4 video file.
 - **Customizable Frame Rate**: Allows you to set the frames per second (FPS) for the video.
+- **Audio Conversion and Trimming**: Includes tools to convert MP3 files to WAV and trim audio files.
 
 ## Prerequisites
 
-Before running the script, make sure you have the following installed:
+Before running the scripts, make sure you have the following installed:
 
-- **Python 3.x**: The script is compatible with Python 3.
+- **Python 3.x**: The scripts are compatible with Python 3.
 - **Required Python Libraries**:
   - `numpy`
   - `matplotlib`
   - `wave`
+  - `pydub`
 
 - **FFmpeg**: Ensure `ffmpeg` is installed on your system. It is used to handle video encoding.
 
 You can install the required Python libraries using pip:
 
 ```bash
-pip install numpy matplotlib
+pip install numpy matplotlib pydub
 ```
 
 ## Usage
-Prepare Your Audio File: Ensure you have a WAV file ready to be converted. For example, t_Robin - 5.wav.
-
-Run the Script:
+1. Trim and Amplify Audio
+Use the audio_trimmer.py script to trim and amplify your audio. This is useful if you want to generate the spectrogram for a specific portion of the original audio.
 
 ```bash
-python your_script_name.py
+python audio_trimmer.py
 ```
-Replace your_script_name.py with the name of your Python file.
+Update the file paths and parameters in audio_trimmer.py as needed. For example, it trims the audio file to 3 seconds starting at the 3-second mark and saves it.
 
-Check the Output: After running the script, an MP4 video file will be created with the same name as the input WAV file but with the .mp4 extension. For example, if your input file is t_Robin - 5.wav, the output file will be t_Robin - 5.mp4.
+2. Convert MP3 to WAV
+If your audio file is in MP3 format, use the mp3ToWav.py script to convert it to WAV format.
 
-Script Details
-kilo(x, pos): Custom formatter to convert frequency values to kilohertz (kHz) for the y-axis of the spectrogram.
+```bash
+python mp3ToWav.py
+```
+Update the file paths in mp3ToWav.py to match your input MP3 file and desired output WAV file.
 
-## Functions
+3. Generate Spectrogram Video
+Once you have your WAV file ready, use the vidwav.py script to generate a video of the spectrogram.
 
-### `vidwav(wavfile, fps=25)`
-
-Main function that:
-- Reads the WAV file.
-- Generates a spectrogram.
-- Creates a video of the spectrogram.
-- Uses FFmpeg to combine the audio and video into a single MP4 file.
-
-### `main()`
-
-Calls the `vidwav` function with a sample WAV file `t_Robin - 5.wav`. You can replace this with your own file.
-
-## Notes
-
-- **Customization**: You can adjust the frame rate by changing the `fps` parameter in the `vidwav` function.
-- **Colormap**: The spectrogram uses the `'viridis'` colormap. You can change it to other available colormaps in matplotlib.
+```bash
+python vidwav.py
+```
+Ensure the vidwav.py script references your WAV file correctly. The script will generate an MP4 video with the spectrogram visualization.
 
 ## Contributing
 If you would like to contribute to this project, please fork the repository and submit a pull request with your changes.
@@ -71,4 +64,4 @@ For any questions or issues, you can reach out to [Moharira25](https://github.co
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
